@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   client_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpcarvalho <jpcarvalho@student.42.fr>      +#+  +:+       +#+        */
+/*   By: jhorta-c <jhorta-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/14 17:21:32 by jhorta-c          #+#    #+#             */
-/*   Updated: 2024/07/09 19:19:56 by jpcarvalho       ###   ########.fr       */
+/*   Created: 2024/09/02 15:25:32 by jhorta-c          #+#    #+#             */
+/*   Updated: 2024/09/02 19:17:09 by jhorta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "./minitalk.h"
 
@@ -19,8 +18,9 @@
 
 void	sig_handler(int sig)
 {
-	static int	i = 0;
-	
+	static int	i;
+
+	i = 0;
 	if (sig == SIGUSR1 && i == 0)
 	{
 		ft_printf("Message received by server\n");
@@ -57,6 +57,8 @@ int	main(int argc, char *argv[])
 	int					i;
 
 	i = 0;
+	if (argc != 3 || !argv[2])
+		return (ft_printf("Usage: ./client [PID] [message]\n"));
 	while (argv[1][i])
 	{
 		if (!ft_isdigit(argv[1][i++]))
@@ -65,15 +67,10 @@ int	main(int argc, char *argv[])
 			return (1);
 		}
 	}
-	if (argc != 3 || !argv[2])
-		ft_printf("Usage: ./client [PID] [message]\n");
-	else
-	{
-		sa.sa_handler = &sig_handler;
-		sa.sa_flags = SA_SIGINFO;
-		sigaction(SIGUSR1, &sa, NULL);
-		sigaction(SIGUSR2, &sa, NULL);
-		ft_send_string(argv[2], ft_atoi(argv[1]));
-	}
+	sa.sa_handler = &sig_handler;
+	sa.sa_flags = SA_SIGINFO;
+	sigaction(SIGUSR1, &sa, NULL);
+	sigaction(SIGUSR2, &sa, NULL);
+	ft_send_string(argv[2], ft_atoi(argv[1]));
 	return (EXIT_SUCCESS);
 }

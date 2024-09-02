@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   server.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpcarvalho <jpcarvalho@student.42.fr>      +#+  +:+       +#+        */
+/*   By: jhorta-c <jhorta-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 18:05:56 by jhorta-c          #+#    #+#             */
-/*   Updated: 2024/07/09 18:14:02 by jpcarvalho       ###   ########.fr       */
+/*   Updated: 2024/09/02 18:06:49 by jhorta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	ft_signal_handler(int sig)
 	if (sig == SIGUSR1)
 		character = character << 1;
 	else if (sig == SIGUSR2)
-		character = (character << 1) | 0b00000001;
+		character = (character << 1) | 1;
 	i++;
 	if (i == 8)
 	{

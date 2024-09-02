@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpcarvalho <jpcarvalho@student.42.fr>      +#+  +:+       +#+        */
+/*   By: jhorta-c <jhorta-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 13:02:21 by jhorta-c          #+#    #+#             */
-/*   Updated: 2024/07/09 18:18:39 by jpcarvalho       ###   ########.fr       */
+/*   Updated: 2024/09/02 16:41:34 by jhorta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ void	ft_send_string(int pid, char *str)
 
 int	main(int argc, char **argv)
 {
+	pid_t	pid;
+
 	if (argc != 3)
 	{
 		ft_printf("Usage: ./client [PID] [message]\n");
@@ -48,8 +50,12 @@ int	main(int argc, char **argv)
 	}
 	else
 	{
-		pid_t	pid;
 		pid = ft_atoi(argv[1]);
+		if (pid < 1)
+		{
+			perror("error pid");
+			exit(EXIT_FAILURE);
+		}
 		ft_send_string(pid, argv[2]);
 	}
 	return (0);
