@@ -6,7 +6,7 @@
 /*   By: jhorta-c <jhorta-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 15:25:32 by jhorta-c          #+#    #+#             */
-/*   Updated: 2024/09/02 19:17:09 by jhorta-c         ###   ########.fr       */
+/*   Updated: 2024/09/04 18:12:44 by jhorta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	sig_handler(int sig)
 	static int	i;
 
 	i = 0;
-	if (sig == SIGUSR1 && i == 0)
+	if (sig == SIGUSR2 && i == 0)
 	{
 		ft_printf("Message received by server\n");
 		i = 1;
